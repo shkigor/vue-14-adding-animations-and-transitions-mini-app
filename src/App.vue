@@ -2,7 +2,14 @@
   <div class="container">
     <h1 class="text-center"><strong>The Super Quiz</strong></h1>
     <hr>
-    <component :is="selectedComponent" @changeComponentViewEvent="selectedComponent=$event"></component>
+    <transition
+            enter-class=""
+            enter-active-class="animated flip"
+            leave-class=""
+            leave-active-class="animated flip"
+    >
+      <component :is="selectedComponent" @changeComponentViewEvent="selectedComponent=$event"></component>
+    </transition>
   </div>
 </template>
 
