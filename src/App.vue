@@ -2,13 +2,7 @@
   <div class="container">
     <h1 class="text-center"><strong>The Super Quiz</strong></h1>
     <hr>
-    <transition
-            enter-class=""
-            enter-active-class="animated flip"
-            leave-class=""
-            leave-active-class="animated flip"
-            mode="out-in"
-    >
+    <transition name="flip" mode="out-in">
       <component :is="selectedComponent" @changeComponentViewEvent="selectedComponent=$event"></component>
     </transition>
   </div>
@@ -61,5 +55,40 @@ export default {
     padding-top: 20px;
     height: 90px;
     width: 200px;
+  }
+
+
+  .flip-enter {
+    /*transform: rotateY(0deg);*/
+  }
+
+  .flip-enter-active {
+    animation: flip-in  0.5s ease-out forwards;
+  }
+
+  .flip-leave {
+    /*transform: rotateY(0deg);*/
+  }
+
+  .flip-leave-active {
+    animation: flip-out 0.5s ease-out forwards;
+  }
+
+  @keyframes flip-out {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(90deg);
+    }
+  }
+
+  @keyframes flip-in {
+    from {
+      transform: rotateY(90deg);
+    }
+    to {
+      transform: rotateY(0deg);
+    }
   }
 </style>
