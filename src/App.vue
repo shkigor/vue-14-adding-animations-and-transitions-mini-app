@@ -1,10 +1,18 @@
 <template>
   <div class="container">
-    <h1 class="text-center"><strong>The Super Quiz</strong></h1>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <h1 class="text-center">The Super Quiz</h1>
+      </div>
+    </div>
     <hr>
-    <transition name="flip" mode="out-in">
-      <component :is="selectedComponent" @changeComponentViewEvent="selectedComponent=$event"></component>
-    </transition>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <transition name="flip" mode="out-in">
+          <component :is="selectedComponent" @changeComponentViewEvent="selectedComponent=$event"></component>
+        </transition>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -39,14 +47,6 @@ export default {
   .panel-heading {
     font-size: 24px;
     font-weight: 600;
-  }
-
-  table tr td button {
-    margin-left: 80px;
-  }
-
-  .borderless tbody tr td, .borderless tbody tr th {
-    border-top: none;
   }
 
   .question-item {

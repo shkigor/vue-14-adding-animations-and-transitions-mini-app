@@ -4,7 +4,8 @@
         <div class="panel-heading text-center">What's {{ leftValue }} - {{ rightValue }}?</div>
         <div class="panel-body">
            <div
-              class="question-item"
+              class="col-xs-12 col-sm-6 text-center"
+              style="margin-top: 20px"
               v-for="btnAnswer in btnAnswers"
               >
                 <button
@@ -47,6 +48,14 @@
                 // return Math.min(Math.floor(Math.random() * max) + 1, min);
                 return Math.floor(Math.random() * max) + 1;
             },
+            generateRandomNumber(min, max, except) {
+              const rndNumber = Math.round(Math.random() * (max - min)) + min;
+              console.log(`min = ${min}, max = ${max}, rndNumber = ${rndNumber}`);
+              if (rndNumber == except) {
+                return this.generateRandomNumber(min, max, except);
+              }
+              return rndNumber;
+            },
             evaluateBtnAnswers() {
                 let sign, hasButtonsCorrectAnswer = false;
                 (this.computedAnswer > 0) ? sign = 1 : sign = -1;
@@ -59,7 +68,8 @@
                 }
 
                 if (!hasButtonsCorrectAnswer) {
-                  let answerPosition = this.calculateRandomNumber(0, 3);
+                  let answerPosition = this.generateRandomNumber(0, 3);
+                  console.log(`answerPosition = ${answerPosition}`);
                   this.btnAnswers[answerPosition] = this.computedAnswer;
                 }
             },
