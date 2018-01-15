@@ -20,9 +20,9 @@
 </template>
 
 <script>
-  function compareRandom(a, b) {
-    return Math.random() - 0.5;
-  }
+  // function compareRandom(a, b) {
+  //   return Math.random() - 0.5;
+  // }
 
     export default {
         name: "question",
@@ -31,7 +31,7 @@
                 leftValue: 1,
                 rightValue: 1,
                 maxValue: 100,
-                btnAnswers: [23, -21, 45, 78]
+                btnAnswers: [1, -1, 1, 1]
             }
         },
         created() {
@@ -48,23 +48,30 @@
                 return Math.floor(Math.random() * max) + 1;
             },
             evaluateBtnAnswers() {
-                let sign;
+                let sign, hasButtonsCorrectAnswer = false;
                 (this.computedAnswer > 0) ? sign = 1 : sign = -1;
 
-                for (let i = 0; i < this.btnAnswers.length - 1; i++) {
+                for (let i = 0; i < this.btnAnswers.length; i++) {
                   this.btnAnswers[i] = this.calculateRandomNumber(0, 100) * sign;
+                  if (this.btnAnswers[i] === this.computedAnswer) {
+                      hasButtonsCorrectAnswer = true;
+                  }
                 }
-                this.btnAnswers[3] = this.computedAnswer;
+
+                if (!hasButtonsCorrectAnswer) {
+                  let answerPosition = this.calculateRandomNumber(0, 3);
+                  this.btnAnswers[answerPosition] = this.computedAnswer;
+                }
             },
-            shuffleAnswers() {
-                this.btnAnswers.sort(compareRandom);
-            },
+            // shuffleAnswers() {
+            //     this.btnAnswers.sort(compareRandom);
+            // },
             startQueze() {
                 // this.leftValue = Math.floor(Math.random() * this.maxValue);
                 this.leftValue = this.calculateRandomNumber(0, 100);
                 this.rightValue = this.calculateRandomNumber(0, 100);
                 this.evaluateBtnAnswers();
-                this.shuffleAnswers();
+                // this.shuffleAnswers();
             },
             checkAnswer(userAnswer, event) {
                 // console.log(userAnswer);

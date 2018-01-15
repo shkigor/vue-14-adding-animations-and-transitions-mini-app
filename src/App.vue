@@ -7,6 +7,7 @@
             enter-active-class="animated flip"
             leave-class=""
             leave-active-class="animated flip"
+            mode="out-in"
     >
       <component :is="selectedComponent" @changeComponentViewEvent="selectedComponent=$event"></component>
     </transition>
